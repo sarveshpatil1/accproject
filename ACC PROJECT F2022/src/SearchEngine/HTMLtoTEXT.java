@@ -1,3 +1,4 @@
+package SearchEngine;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,7 +12,7 @@ import org.jsoup.nodes.Document;
 /**
  -- 
  -- Class HTMLtoTEXT 
- -- @author Drashti
+ -- @author DrashtiKoshti
  */
 public class HTMLtoTEXT {
 
@@ -21,7 +22,7 @@ public class HTMLtoTEXT {
 	 -- @param htmlFile
 	 -- @param textFile
 	 --This method uses Jsoup to parse the html files and store it in document 
-	 --Jsoup eases data extraction from HTML by offering Document Object
+	 --This method converts from html format to txt and store the document as text document
 	 --@throws Exception
 	 */
 	public static void fileConverter(String htmlFile, String textFile) {
@@ -40,8 +41,8 @@ public class HTMLtoTEXT {
 	
 	/**2.0
 	-- Method name- htmlFile
-	--This method creates folder to store html files and stores all the crawled html files.
-	-- @param link- crawled pages that are stored in array list.
+	--This method creates folder if not already created and stores all the crawled html files.
+	-- @param hyperLink- crawled pages that are stored in array list.
 	-- @return 
 	-- @throws IOException
 	 */
@@ -61,7 +62,9 @@ public class HTMLtoTEXT {
 	}
 	
 	/**3.0
-	 -- Method name- textFile 
+	 -- Method name- textFile
+	 --In this method, same name .txt files are created which are there in html file folder
+	 -- and then fileConverter method is called to convert hmtl content to text
 	 -- @param link
 	 -- @throws IOException
 	 
@@ -84,8 +87,8 @@ public class HTMLtoTEXT {
 		}
 		
     /**4.0
-     -- Method name- htmlToText
-     
+     -- Method name- htmlToText 
+     --This method performs the crawl functionality   
      */
 	public static void htmlToText() {
 		try {

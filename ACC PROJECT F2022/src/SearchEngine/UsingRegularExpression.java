@@ -1,3 +1,4 @@
+package SearchEngine;
 
 
 import java.io.IOException;
@@ -20,7 +21,9 @@ public class UsingRegularExpression {
 	public static ArrayList<String> linkList = new ArrayList<>();
 	
     /**
+     --1.0
      -- Method- getLink
+     --This method stores links into linkList.
      -- @param url
      */
     public static void getLinks(String url) {
@@ -44,7 +47,7 @@ public class UsingRegularExpression {
     }
     
     /**
-     --
+     --2.0
      --Method name - getLinkAddress
      -- @param link
      -- @return
