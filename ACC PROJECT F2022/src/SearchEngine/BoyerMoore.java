@@ -20,6 +20,7 @@ public class BoyerMoore {
 			right[pat.charAt(j)] = j;
 	}
 
+	
 	public int search(String pat, String txt) {
 		int M = pat.length();
 		int N = txt.length();
