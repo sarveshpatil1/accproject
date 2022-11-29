@@ -93,7 +93,7 @@ public static int c =0;
 			  System.out.println("________________________________________________________"
 			  ); c=c+1; 
 			  //Checks the most repeated word in the file
-			  RepeatWord.repeatedWord(textFile); }
+			  RepeatWord.repeatedWord(file_text); }
 			}
 		}
 		

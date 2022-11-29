@@ -15,7 +15,7 @@ public class MainSearchEngine {
 			case 1:
 				System.out.println("\nEnter the complete URL including https..:");
 				url = read.next();
-				System.out.println("\nCrwaling web pages...");
+				System.out.println("\nCrawling web pages...");
 				Crawler.crawler(url);
 				System.out.println("\nWeb pages crawled successfully!\n");
 				break;
