@@ -72,18 +72,15 @@ public class HTMLtoTEXT {
 			String htmlFile = "dat/HTML files/" + file.getName();
 			String textFile = storeText + file.getName().replaceAll(".htm", "") + ".txt";
 			fileConverter(htmlFile,textFile);
-			if(i==0) {
-				System.out.println("--------------------------------------------");
-				System.out.println("MOST REPEATED WORD IN THE FILE");
-				System.out.println("--------------------------------------------");
-				i++;
-			}
-			if(c<5) {
-				System.out.println("________________________________________________________");
-				c=c+1;
-				RepeatWord.repeatedWord(textFile);			
-			}
-
+			  if(i==0) {
+			  System.out.println("--------------------------------------------");
+			  System.out.println("MOST REPEATED WORD IN THE FILE");
+			  System.out.println("--------------------------------------------"); i++; }
+			  if(c<5) {
+			  System.out.println("________________________________________________________"
+			  ); c=c+1; 
+			  //Checks the most repeated word in the file
+			  RepeatWord.repeatedWord(textFile); }
 			}
 		}
 		

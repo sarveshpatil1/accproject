@@ -8,30 +8,24 @@ import java.util.Scanner;
 
 public class SearchWord {
 	private static Scanner sc = new Scanner(System.in);
-	//public static String htmlDirectoryPath = "dat/HTML files/";
-	//public static String txtDirectoryPath = "dat/Text Files/";
 	public static void searchWord(String wordToSearch) {
 
 		HashMap<String, Integer> FileList = new HashMap<String, Integer>();
-
-//		System.out.println("\nEnter word:");
-//		String wordToSearch= sc.next();
-
 		int WordFrequency = 0;
 		int TotFiles = 0,flag=0;
 		FileList.clear();
 		try {
 			System.out.println("\nSearching...");
 			File Files = new File("dat/HTML files/");
-
-			File[] ArrayofFiles = Files.listFiles(); //create an array for filenames
+			//List all the files from the directory dat/HTML and creates an array of files
+			File[] ArrayofFiles = Files.listFiles(); 
 
 			for (File file: ArrayofFiles) {
 				In data = new In(file.getAbsolutePath()); //gets the file path
-				String txt = data.readAll(); //read all lines from the file
+				//For each file it reads all the data present in the file
+				String txt = data.readAll(); 
 				data.close();
-				//Pattern p = Pattern.compile("::");
-				//String[] file_name = p.split(txt);S
+				//Search the word and their frequency 
 				WordFrequency = Search.wordSearch(txt, wordToSearch.toLowerCase(), file.getName());
 
 				if (WordFrequency != 0) {

@@ -20,7 +20,7 @@ public class BoyerMoore {
 			right[pat.charAt(j)] = j;
 	}
 
-	
+//Boyer Moore Algorithm to search the pattern 	
 	public int search(String pat, String txt) {
 		int M = pat.length();
 		int N = txt.length();
