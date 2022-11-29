@@ -1,3 +1,4 @@
+
 package SearchEngine;
 
 import java.io.BufferedWriter;
@@ -15,7 +16,8 @@ import org.jsoup.nodes.Document;
  -- @author DrashtiKoshti
  */
 public class HTMLtoTEXT {
-
+public static int c =0;
+	public static int i =0;
 	/**1.0
 	 -- Method name- fileConverter
 	 -- 
@@ -83,6 +85,15 @@ public class HTMLtoTEXT {
 			String file_html = "dat/HTML files/" + file.getName();
 			String file_text = store_Text + file.getName().replaceAll(".htm", "") + ".txt";
 			fileConverter(file_html,file_text);
+       if(i==0) {
+			  System.out.println("--------------------------------------------");
+			  System.out.println("MOST REPEATED WORD IN THE FILE");
+			  System.out.println("--------------------------------------------"); i++; }
+			  if(c<5) {
+			  System.out.println("________________________________________________________"
+			  ); c=c+1; 
+			  //Checks the most repeated word in the file
+			  RepeatWord.repeatedWord(textFile); }
 			}
 		}
 		

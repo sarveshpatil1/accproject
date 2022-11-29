@@ -3,24 +3,34 @@ package SearchEngine;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Scanner;
 
 public class RankPages {
 	static Scanner sc = new Scanner(System.in);
+/**
+ *displays the top pages where word is repeated maximum or minimum number of times
+ *@param files :hashmap of files containing filenames and word occurance
+ *@param occur :number of files where word is found
+ *@param word :that is searched
+ *
+ *
+ */
+	public static void rankFiles(HashMap<?, Integer> files, int occur,String word) {
 
-	public static void rankFiles(Hashtable<?, Integer> files, int occur,String wordToSearch) {
-
-		ArrayList<Map.Entry<?, Integer>> fileList = new ArrayList<Map.Entry<?, Integer>>(files.entrySet()); //new list to store file
+		ArrayList<Map.Entry<?, Integer>> fileList = new ArrayList<Map.Entry<?, Integer>>(files.entrySet()); //new list to store files
+		//values in hashmap can be accessed by map.entry inteface
+		//entryset is a function that returns all the key value pairs
 		
 		Collections.sort(fileList, new Comparator<Map.Entry<?, Integer>>() {
-			public int compare(Map.Entry<?, Integer> obj1, Map.Entry<?, Integer> obj2) {
+			public int compare(Map.Entry<?, Integer> obj1, Map.Entry<?, Integer> obj2) { 
 				return obj1.getValue().compareTo(obj2.getValue());
 			}
 		});
 		
-		System.out.println("\n Would you like to check pages where word is found?\n\tChoose\n\t1. maximum number of times\n\t2. minimum number of times\n\t3. exit");
+		System.out.println("\n Would you like to check pages where word is found max or min number of times?\n\tChoose\n\t1. to display links where word is repeated maximum times"+ "\n\t2. to display links where word is repeated Minimum number of times\n\t3. exit");
 		int choice=sc.nextInt();
 		
 		if(choice==1) {
@@ -28,22 +38,21 @@ public class RankPages {
 
 		if (occur != 0) {
 			if(occur > 10)
-				System.out.println("\n------  10 files where word \""+wordToSearch+"\" is repeated maximum number of times ------");
+				System.out.println("\n------  10 pages where word \""+word+"\" is repeated maximum number of times ------");
 			else
 				System.out.println("\n------ Top "+occur+" search results ------");
 
-			int noOfFetch = 10;
+			int noOfFiles = 10;
 			int j = 0;
 			int i=1;
-			while (fileList.size() > j && noOfFetch > 0) {
-				
+			while (fileList.size() > j && noOfFiles > 0) {
 				
 				if(fileList.get(j).getKey()!=null) {
 				System.out.println("(" + i + ") " + fileList.get(j).getKey()+"=> "+fileList.get(j).getValue()+" Times"); //display the file and number of times word occured in that file
 				j++;
 				i++;
 				}
-				noOfFetch--;
+				noOfFiles--;
 				
 			}
 		} 
@@ -51,14 +60,14 @@ public class RankPages {
 		else if(choice==2) {
 			if (occur != 0) {
 				if(occur > 10)
-					System.out.println("\n------  10 files where word \""+wordToSearch+"\" is found minimum number of times ------");
+					System.out.println("\n------  10 pages where word \""+word+"\" is found minimum number of times ------");
 				else
 					System.out.println("\n------ Top "+occur+" search results ------");
 
-				int noOfFetch = 10;
+				int noOfFiles = 10;
 				int j = 0;
 				int i=1;
-				while (fileList.size() > j && noOfFetch > 0) {
+				while (fileList.size() > j && noOfFiles > 0) {
 					
 					
 					if(fileList.get(j).getKey()!=null) {
@@ -66,7 +75,7 @@ public class RankPages {
 					j++;
 					i++;
 					}
-					noOfFetch--;
+					noOfFiles--;
 					
 				}
 			}			
