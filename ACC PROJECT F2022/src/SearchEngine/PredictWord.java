@@ -76,7 +76,7 @@ public class PredictWord {
 			if (allowedDistance == entry.getValue()) {
 				i++;
 				if(i==1)
-				System.out.println("Wrong word searched..\nYou might have mispelled, Try .. ");
+				System.out.println("Wrong input..\nYou might have mispelled, Try these words again.. ");
 				System.out.print(i + ". " + entry.getKey() + "\n");
 				Found = true;
 			}

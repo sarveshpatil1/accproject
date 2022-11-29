@@ -40,6 +40,7 @@ public class MainSearchEngine {
 			default:
 				System.out.println("invalid input.");
 			}
+			System.out.println("\n\tSelect the option below:");
 			System.out.println("\n\t1. Crawl different pages\n\t2. Display all the crawled pages\n\t3. Search\n\t0. to main menu");
 			input = read.nextInt();
 		}

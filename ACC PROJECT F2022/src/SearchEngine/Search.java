@@ -14,7 +14,7 @@ public class Search {
 			}
 		}
 		if (counter != 0) {
-			System.out.println("Found in HTML file --> " + fileName+" --> "+counter+" times"); // Founded from which HTML file..
+			System.out.println("Found in page --> " + fileName+" --> "+counter+" times"); // Founded from which HTML file..
 			System.out.println("______________________________________________________________");																								
 		}
 		return counter;
