@@ -11,7 +11,8 @@ import org.jsoup.nodes.Document;
 
 
 public class HTMLtoTEXT {
-
+	public static int c =0;
+	public static int i =0;
 	/**
 	 * Method- fileConverter
 	 * 
@@ -67,11 +68,22 @@ public class HTMLtoTEXT {
 		File folder = new File("dat/HTML files/");
 		File[] fileStream = folder.listFiles();
 		assert fileStream != null;
-		
 		for (File file : fileStream) {  
 			String htmlFile = "dat/HTML files/" + file.getName();
 			String textFile = storeText + file.getName().replaceAll(".htm", "") + ".txt";
 			fileConverter(htmlFile,textFile);
+			if(i==0) {
+				System.out.println("--------------------------------------------");
+				System.out.println("MOST REPEATED WORD IN THE FILE");
+				System.out.println("--------------------------------------------");
+				i++;
+			}
+			if(c<5) {
+				System.out.println("________________________________________________________");
+				c=c+1;
+				RepeatWord.repeatedWord(textFile);			
+			}
+
 			}
 		}
 		
@@ -86,7 +98,6 @@ public class HTMLtoTEXT {
 				textFile(link);
 			}
 		} catch (Exception error) {
-
 			System.out.println("URL cannot be fetched: "+error);
 		} 
 	}
