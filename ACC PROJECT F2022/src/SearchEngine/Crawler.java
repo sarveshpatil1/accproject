@@ -1,36 +1,40 @@
 package SearchEngine;
 
+
 /**
- * Crawler class
- * @author Sarvesh
- */
+ ---------- Crawler class-----------
+ ---------- @author DrashtiKoshti
+  */
+
+
 public class Crawler {
 	
     /**
-     * Constructor
-     * @param url
+    -- Constructor @param url
      */
-    public Crawler(String url) {   
-    	UsingRegularExpression.getLinks(url);
+    public Crawler(String webaddress) {   
+    	UsingRegularExpression.getLinks(webaddress);
         HTMLtoTEXT.htmlToText();
     }
 
     /**
-     * Method- fetchURLList
-     * this method fetches the list of URLs and
-     * @return list of URLs of type string
+     -- Method name - fetchURLList
+     -- this method retrieves a list of URLs and 
+     -- @return list of URLs of type string
      */
     public static String[] fetchURLList () {
         String[] listOfURL = UsingRegularExpression.linkList.toArray(new String[UsingRegularExpression.linkList.size()]);
         return listOfURL;
     }
+
     
     /**
-     * Method- crawler
-     * @param url
+     -- Method name - crawler
+     -- @param url
      */
-    public static void crawler(String url) {
-    	UsingRegularExpression.getLinks(url);
+    public static void crawler(String webaddress) {
+    	UsingRegularExpression.getLinks(webaddress);
     	HTMLtoTEXT.htmlToText();
     }
 }
+

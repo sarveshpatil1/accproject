@@ -1,6 +1,5 @@
 package SearchEngine;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -12,39 +11,46 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+
 /**
+
  -- 
  -- UsingRegularExpression class
+ -- methods in this class:getLinks, getLinks
  -- @author  DrashtiKoshti
+
  */
+
 public class UsingRegularExpression {
 	
 	public static ArrayList<String> linkList = new ArrayList<>();
 	
     /**
+
      --1.0
      -- Method- getLink
      --This method stores links into linkList.
      -- @param url
-     */
-    public static void getLinks(String url) {
-        Document page;
-        try {
-            page = Jsoup.connect(url).get();
-            Elements links = page.select("a[href]");
-            for (Element link : links) {
 
-                String absURL = link.attr("abs:href");
-                String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
-                Pattern urlPattern = Pattern.compile(regex);
-                Matcher matchURL = urlPattern.matcher(absURL);
-                while (matchURL.find()) {
-                    linkList.add(matchURL.group(0));
+     */
+	
+    public static void getLinks(String webaddress) {
+        Document htmlPage;
+        try {
+        	htmlPage = Jsoup.connect(webaddress).get();
+            Elements path = htmlPage.select("a[href]");
+            for (Element link : path) {
+            	
+                String abst_URL = link.attr("abs:href");
+                String regexpression = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+                Pattern url_Pattrn = Pattern.compile(regexpression);
+                Matcher match_URL = url_Pattrn.matcher(abst_URL);
+                while (match_URL.find()) {
+                    linkList.add(match_URL.group(0));
                 }
             }
         } catch (IOException error) {
             error.printStackTrace();
-            System.out.println("Something went wrong try again");
         }
     }
     
@@ -53,17 +59,19 @@ public class UsingRegularExpression {
      --Method name - getLinkAddress
      -- @param link
      -- @return
+
      */
-    public static String getLinkAddress(String link) {
-    	String regex = "[a-zA-Z0-9]+";
-		Pattern linkPattern = Pattern.compile(regex);
-		Matcher matchLink = linkPattern.matcher(link);
+    public static String getLinkAddress(String webaddress) {
+    	String regexpression = "[a-zA-Z0-9]+";
+		Pattern Pattern_link = Pattern.compile(regexpression);
+		Matcher Link_match = Pattern_link.matcher(webaddress);
 		StringBuffer string = new StringBuffer();
-		while (matchLink.find()) {
-			string.append(matchLink.group(0));
+		while (Link_match.find()) {
+			string.append(Link_match.group(0));
 		}
-		String linkAdress = string.substring(0);
-		return linkAdress;
+		String link_Adress = string.substring(0);
+		return link_Adress;
     }
 
 }
+

@@ -1,3 +1,4 @@
+
 package SearchEngine;
 
 import java.io.BufferedWriter;
@@ -9,70 +10,82 @@ import java.io.PrintWriter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-
+/**
+ -- 
+ -- Class HTMLtoTEXT 
+ -- @author DrashtiKoshti
+ */
 public class HTMLtoTEXT {
-	public static int c =0;
+public static int c =0;
 	public static int i =0;
-	/**
-	 * Method- fileConverter
-	 * 
-	 * @param htmlFile
-	 * @param textFile
+	/**1.0
+	 -- Method name- fileConverter
+	 -- 
+	 -- @param htmlFile
+	 -- @param textFile
+	 --This method uses Jsoup to parse the html files and store it in document 
+	 --This method converts from html format to txt and store the document as text document
+	 --@throws Exception
 	 */
-	public static void fileConverter(String htmlFile, String textFile) {
+	public static void fileConverter(String file_html, String file_text) {
 		try {
-		File HTMLFile = new File(htmlFile);
-		Document document = Jsoup.parse(HTMLFile, "UTF-8");    
-		String Text = document.text(); 
-		BufferedWriter writeText = new BufferedWriter(new FileWriter(textFile)); 
-		writeText.write(Text);
-		writeText.close();
-		}catch (Exception error) {
-			System.out.println("URL cannot be fetched: "+error);
+		File file_HTML = new File(file_html);
+		Document doc = Jsoup.parse(file_HTML, "UTF-8");    
+		String txt = doc.text(); 
+		BufferedWriter text_write = new BufferedWriter(new FileWriter(file_text)); 
+		text_write.write(txt);
+		text_write.close();
+		}catch (Exception error)
+		{
+			System.out.println("URL cannot be fetched:"+error);
 		}
 	}
 	
-	/**
-	 * Method- htmlFile
-	 * Creates folder to store html files and stores all the crawled html files.
-	 * @param link- crawled pages that are stored in array list.
-	 * @return 
-	 * @throws IOException
+	/**2.0
+	-- Method name- htmlFile
+	--This method creates folder if not already created and stores all the crawled html files.
+	-- @param hyperLink- crawled pages that are stored in array list.
+	-- @return 
+	-- @throws IOException
 	 */
 	public static void htmlFile(String link) throws IOException {
-		Document urlLink = Jsoup.connect(link).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0")
+		Document link_url = Jsoup.connect(link).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0")
 				.referrer("http://www.google.com").ignoreHttpErrors(true).timeout(10*1000).get();
-		String storeHTML = "dat/HTML files/";
-		String html = urlLink.html();
-		File htmlFolder = new File(storeHTML);
-		if (!htmlFolder.exists() && !htmlFolder.isDirectory()) {
-			htmlFolder.mkdir();
+		String HTML_store = "dat/HTML files/";
+		String html = link_url.html();
+		File folder_html = new File(HTML_store);
+		if (!folder_html.exists() && !folder_html.isDirectory())
+		{
+			folder_html.mkdir();
 		}  
-		PrintWriter text = new PrintWriter(storeHTML + UsingRegularExpression.getLinkAddress(link) + ".html");
+		PrintWriter text = new PrintWriter(HTML_store + UsingRegularExpression.getLinkAddress(link) + ".html");
 		text.println(html);
 		text.close();
 	}
 	
-	/**
-	 * Method- textFile
-	 * 
-	 * @param link
-	 * @throws IOException
+	/**3.0
+	 -- Method name- textFile
+	 --In this method, same name .txt files are created which are there in html file folder
+	 -- and then fileConverter method is called to convert hmtl content to text
+	 -- @param link
+	 -- @throws IOException
+	 
 	 */
 	public static void textFile(String link) throws IOException {
-		String storeText = "dat/Text Files/";
-		File textFolder = new File(storeText);
-		if (!textFolder.exists() && !textFolder.isDirectory()) {
-			textFolder.mkdir();
+		String store_Text = "dat/Text Files/";
+		File folder_text = new File(store_Text);
+		if (!folder_text.exists() && !folder_text.isDirectory()) {
+			folder_text.mkdir();
 		}   
-		File folder = new File("dat/HTML files/");
-		File[] fileStream = folder.listFiles();
-		assert fileStream != null;
-		for (File file : fileStream) {  
-			String htmlFile = "dat/HTML files/" + file.getName();
-			String textFile = storeText + file.getName().replaceAll(".htm", "") + ".txt";
-			fileConverter(htmlFile,textFile);
-			  if(i==0) {
+		File folder_new = new File("dat/HTML files/");
+		File[] file_stream = folder_new.listFiles();
+		assert file_stream != null;
+		
+		for (File file : file_stream) {  
+			String file_html = "dat/HTML files/" + file.getName();
+			String file_text = store_Text + file.getName().replaceAll(".htm", "") + ".txt";
+			fileConverter(file_html,file_text);
+       if(i==0) {
 			  System.out.println("--------------------------------------------");
 			  System.out.println("MOST REPEATED WORD IN THE FILE");
 			  System.out.println("--------------------------------------------"); i++; }
@@ -84,18 +97,19 @@ public class HTMLtoTEXT {
 			}
 		}
 		
-    /**
-     * method- htmlToText
-     * 
+    /**4.0
+     -- Method name- htmlToText 
+     --This method performs the crawl functionality   
      */
 	public static void htmlToText() {
 		try {
-			for (String link : UsingRegularExpression.linkList) {
-				htmlFile(link);
-				textFile(link);
+			for (String url : UsingRegularExpression.linkList) {
+				htmlFile(url);
+				textFile(url);
 			}
 		} catch (Exception error) {
-			System.out.println("URL cannot be fetched: "+error);
+
+			System.out.println("URL cannot be fetched:"+error);
 		} 
 	}
 }

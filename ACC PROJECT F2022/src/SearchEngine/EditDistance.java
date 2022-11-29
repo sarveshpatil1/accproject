@@ -1,5 +1,5 @@
 package SearchEngine;
-
+ 
 public class EditDistance {
 	public static int editDistance(String str1, String str2) {
 		int len1 = str1.length();
