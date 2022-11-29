@@ -6,16 +6,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jsoup.*;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
 /**
+
  -- 
  -- UsingRegularExpression class
  -- methods in this class:getLinks, getLinks
  -- @author  DrashtiKoshti
+
  */
 
 public class UsingRegularExpression {
@@ -23,10 +26,12 @@ public class UsingRegularExpression {
 	public static ArrayList<String> linkList = new ArrayList<>();
 	
     /**
+
      --1.0
      -- Method- getLink
      --This method stores links into linkList.
      -- @param url
+
      */
 	
     public static void getLinks(String webaddress) {
@@ -54,6 +59,7 @@ public class UsingRegularExpression {
      --Method name - getLinkAddress
      -- @param link
      -- @return
+
      */
     public static String getLinkAddress(String webaddress) {
     	String regexpression = "[a-zA-Z0-9]+";
