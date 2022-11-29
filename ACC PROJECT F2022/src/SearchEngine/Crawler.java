@@ -1,14 +1,16 @@
 package SearchEngine;
 
+
 /**
  ---------- Crawler class-----------
  ---------- @author DrashtiKoshti
   */
 
+
 public class Crawler {
 	
     /**
-     Constructor @param url
+    -- Constructor @param url
      */
     public Crawler(String webaddress) {   
     	UsingRegularExpression.getLinks(webaddress);
@@ -24,6 +26,7 @@ public class Crawler {
         String[] listOfURL = UsingRegularExpression.linkList.toArray(new String[UsingRegularExpression.linkList.size()]);
         return listOfURL;
     }
+
     
     /**
      -- Method name - crawler

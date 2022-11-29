@@ -25,14 +25,14 @@ public class HTMLtoTEXT {
 	 --This method converts from html format to txt and store the document as text document
 	 --@throws Exception
 	 */
-	public static void fileConverter(String htmlFile, String textFile) {
+	public static void fileConverter(String file_html, String file_text) {
 		try {
-		File HTMLFile = new File(htmlFile);
-		Document document = Jsoup.parse(HTMLFile, "UTF-8");    
-		String Text = document.text(); 
-		BufferedWriter writeText = new BufferedWriter(new FileWriter(textFile)); 
-		writeText.write(Text);
-		writeText.close();
+		File file_HTML = new File(file_html);
+		Document doc = Jsoup.parse(file_HTML, "UTF-8");    
+		String txt = doc.text(); 
+		BufferedWriter text_write = new BufferedWriter(new FileWriter(file_text)); 
+		text_write.write(txt);
+		text_write.close();
 		}catch (Exception error)
 		{
 			System.out.println("URL cannot be fetched:"+error);
@@ -47,16 +47,16 @@ public class HTMLtoTEXT {
 	-- @throws IOException
 	 */
 	public static void htmlFile(String link) throws IOException {
-		Document urlLink = Jsoup.connect(link).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0")
+		Document link_url = Jsoup.connect(link).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0")
 				.referrer("http://www.google.com").ignoreHttpErrors(true).timeout(10*1000).get();
-		String storeHTML = "dat/HTML files/";
-		String html = urlLink.html();
-		File htmlFolder = new File(storeHTML);
-		if (!htmlFolder.exists() && !htmlFolder.isDirectory())
+		String HTML_store = "dat/HTML files/";
+		String html = link_url.html();
+		File folder_html = new File(HTML_store);
+		if (!folder_html.exists() && !folder_html.isDirectory())
 		{
-			htmlFolder.mkdir();
+			folder_html.mkdir();
 		}  
-		PrintWriter text = new PrintWriter(storeHTML + UsingRegularExpression.getLinkAddress(link) + ".html");
+		PrintWriter text = new PrintWriter(HTML_store + UsingRegularExpression.getLinkAddress(link) + ".html");
 		text.println(html);
 		text.close();
 	}
@@ -70,19 +70,19 @@ public class HTMLtoTEXT {
 	 
 	 */
 	public static void textFile(String link) throws IOException {
-		String storeText = "dat/Text Files/";
-		File textFolder = new File(storeText);
-		if (!textFolder.exists() && !textFolder.isDirectory()) {
-			textFolder.mkdir();
+		String store_Text = "dat/Text Files/";
+		File folder_text = new File(store_Text);
+		if (!folder_text.exists() && !folder_text.isDirectory()) {
+			folder_text.mkdir();
 		}   
-		File folder = new File("dat/HTML files/");
-		File[] fileStream = folder.listFiles();
-		assert fileStream != null;
+		File folder_new = new File("dat/HTML files/");
+		File[] file_stream = folder_new.listFiles();
+		assert file_stream != null;
 		
-		for (File file : fileStream) {  
-			String htmlFile = "dat/HTML files/" + file.getName();
-			String textFile = storeText + file.getName().replaceAll(".htm", "") + ".txt";
-			fileConverter(htmlFile,textFile);
+		for (File file : file_stream) {  
+			String file_html = "dat/HTML files/" + file.getName();
+			String file_text = store_Text + file.getName().replaceAll(".htm", "") + ".txt";
+			fileConverter(file_html,file_text);
 			}
 		}
 		
@@ -92,9 +92,9 @@ public class HTMLtoTEXT {
      */
 	public static void htmlToText() {
 		try {
-			for (String link : UsingRegularExpression.linkList) {
-				htmlFile(link);
-				textFile(link);
+			for (String url : UsingRegularExpression.linkList) {
+				htmlFile(url);
+				textFile(url);
 			}
 		} catch (Exception error) {
 
